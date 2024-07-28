@@ -1,28 +1,35 @@
 import { useEffect, useState } from "react";
 import { RestaurentCard } from "./RestaurentCard";
-import { res } from "../utils/Resdata";
-export { res } from "../utils/Resdata";
+import { resdata } from "../utils/Resdata";
+import Shimmer from "./Shimmer";
+// export { res } from "../utils/zoma";
 export const Body = () => {
-  const [reslist, setResList] = useState(res);
+  const [reslist, setResList] = useState([]);
 
   useEffect(() => {
-    fetchData();
+    setResList(resdata);
+    // fetchData();
   }, []);
 
   const fetchData = async () => {
-    const data = await fetch("https://www.zomato.com/webroutes/auth/init");
+    const data = await fetch("https://www.zomato.com/webroutes/search/home");
     const res = await data.json();
+    // setResList(res);
+    // console.log(reslist);
+    // console.log("Two section/n");
     console.log(res);
   };
 
-  return (
+  return reslist.length === 0 ? (
+    <Shimmer />
+  ) : (
     <div className="body">
       <div className="search">Search</div>
       <div className="res-container">
         <button
           className="filter-btn"
           onClick={() => {
-            const filterList = reslist.filter((res) => res.rating > 4);
+            const filterList = reslist.filter((res) => res.info.rating > 4);
             setResList(filterList);
           }}
         >
@@ -31,9 +38,10 @@ export const Body = () => {
         {reslist.map((res) => {
           return (
             <RestaurentCard
-              resName={res.resName}
-              rating={res.rating}
-              key={res.id}
+              resName={res.info.name}
+              // rating={res.i}
+              rating="5"
+              key={res.info.rating.aggregate_rating}
             />
           );
         })}

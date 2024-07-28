@@ -1,4 +1,8 @@
+import { useState } from "react";
+import { Link } from "react-router-dom";
 const Header = () => {
+  // When React State Veriable is Changes react re-render the component
+  const [btnName, setbtnName] = useState("Login");
   return (
     <div className="header">
       <div className="logo-container">
@@ -10,10 +14,26 @@ const Header = () => {
       </div>
       <div className="nav-items">
         <ul>
-          <li>Home</li>
-          <li>About Us</li>
-          <li>Contact Us</li>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/ab">About Us</Link>
+          </li>
+          <li>
+            <Link to="/contact">Contact Us</Link>
+          </li>
+          <li>
+            <Link to="/gro">Grocery</Link>
+          </li>
           <li>Cart</li>
+          <button
+            onClick={() =>
+              btnName === "Login" ? setbtnName("Logout") : setbtnName("Login")
+            }
+          >
+            {btnName}
+          </button>
         </ul>
       </div>
     </div>

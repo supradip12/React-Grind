@@ -1,14 +1,29 @@
-export const res = [
+export const resdata = [
   {
-    resName: "KFC",
-    rating: "4.2",
+    info: {
+      name: "KFC",
+      Image: {
+        url: "https://b.zmtcdn.com/data/pictures/chains/4/54044/3db165d4423b33c9fd0462d754cd02b2_o2_featured_v2.jpg",
+      },
+      rating: {
+        aggregate_rating: "4.3",
+      },
+    },
   },
   {
-    resName: "Dominos",
-    rating: " 3.8",
+    info: {
+      name: "KFC",
+      rating: {
+        aggregate_rating: "3.3",
+      },
+    },
   },
   {
-    resName: "Burger King",
-    rating: "4.3",
+    info: {
+      name: "KFC",
+      rating: {
+        aggregate_rating: "4.3",
+      },
+    },
   },
 ];
